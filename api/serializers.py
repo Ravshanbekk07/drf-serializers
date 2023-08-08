@@ -9,3 +9,10 @@ class TaskSerializer(serializers.Serializer):
     description = serializers.CharField(allow_null=True)
     completed = serializers.BooleanField(default=False)
     created = serializers.DateTimeField(default=datetime.now())
+
+
+    def to_representation(self, instance: Task):
+        return {
+            'id': instance.id,
+            'info': f"{instance.title} - {instance.description}"
+        }
