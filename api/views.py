@@ -11,14 +11,14 @@ from .serializers import TaskSerializer
 class TaskView(APIView):
     def get(self, request: Request, pk: int=None) -> Response:
         pass
-        # if pk is None:
-        #     tasks = Task.objects.all()
-        #     serializer = TaskSerializer(tasks, many=True)
-        #     return Response(serializer.data)
-        # else:
-        #     try:
-        #         task = Task.objects.get(pk=pk)
-        #         serializer = TaskSerializer(task)
-        #         return Response(serializer.data)
-        #     except Task.DoesNotExist:
-        #         return Response(status=status.HTTP_404_NOT_FOUND)
+        if pk is None:
+            tasks = Task.objects.all()
+            serializer = TaskSerializer(tasks, many=True)
+            return Response(serializer.data)
+        else:
+            try:
+                task = Task.objects.get(pk=pk)
+                serializer = TaskSerializer(task)
+                return Response(serializer.data)
+            except Task.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
