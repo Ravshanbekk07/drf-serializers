@@ -22,3 +22,4 @@ class TaskView(APIView):
                 return Response(serializer.data)
             except Task.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
+    
